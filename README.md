@@ -1,8 +1,8 @@
-Welcome to the AWS CodeStar sample web service
+Demo Cars serice
 ==================================================
 
-This sample code helps get you started with a simple Java web service
-deployed by AWS CodeDeploy and AWS CloudFormation to an Amazon EC2 server.
+This project was originated from sample code coming from AWS CodeDeploy.
+This project is deployed by AWS CodeDeploy and AWS CloudFormation to an Amazon EC2 server.
 
 What's Here
 -----------
@@ -26,63 +26,30 @@ This sample includes:
 Getting Started
 ---------------
 
-These directions assume you want to develop on your local computer, and not
-from the Amazon EC2 instance itself. If you're on the Amazon EC2 instance, the
-virtual environment is already set up for you, and you can start working on the
-code.
-
-To work on the sample code, you'll need to clone your project's repository to your
-local computer. If you haven't, do that first. You can find instructions in the AWS CodeStar user guide at https://docs.aws.amazon.com/codestar/latest/userguide/getting-started.html#clone-repo.
+Deploying locally
 
 1. Install maven.  See https://maven.apache.org/install.html for details.
 
-2. Install tomcat.  See https://tomcat.apache.org/tomcat-8.0-doc/setup.html for
-   details.
+2. Build the service.
 
-3. Build the service.
+        $ mvn clean package
 
-        $ mvn -f pom.xml compile
-        $ mvn -f pom.xml package
+3. Then execute 
 
-4. Copy the built service to the Tomcat webapp directory.  The actual
-   location of that directory will vary depending on your platform and
-   installation.
+        $ sh run.sh
 
-        $ cp target/ROOT.war <tomcat webapp directory>
+4. Open http://127.0.0.1:8080/ in a web browser to view your service.
 
-4. Restart your tomcat server
 
-5. Open http://127.0.0.1:8080/ in a web browser to view your service.
-
-What Do I Do Next?
+How Do I generate Api interfaces from swagger specification?
 ------------------
 
-Once you have a virtual environment running, you can start making changes to
-the sample Java web service. We suggest making a small change to
-/src/main/java/com/aws/codestar/projecttemplates/controller/HelloWorldController.java
-first, so you can see how changes pushed to your project's repository are automatically
-picked up by your project pipeline and deployed to the Amazon EC2 instance. (You can watch
-the pipeline progress on your project dashboard.) Once you've seen how that works, start
-developing your own code, and have fun!
+On bash run , 
 
-To run your tests locally, go to the root directory of the sample code and run the
-`mvn clean compile test` command, which AWS CodeBuild also runs through your `buildspec.yml` file.
+```bash
+java -jar ~/bin/swagger-codegen-cli.jar generate -i api-spec/swagger-carsdemo.yaml -l spring -c  config/swagger-codegen.json
+```
 
-To test your new code during the release process, modify the existing tests or add tests
-to the tests directory. AWS CodeBuild will run the tests during the build stage of your
-project pipeline. You can find the test results in the AWS CodeBuild console.
-
-Learn more about Maven's [Standard Directory Layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html).
-
-Learn more about AWS CodeBuild and how it builds and tests your application here:
-https://docs.aws.amazon.com/codebuild/latest/userguide/concepts.html
-
-Learn more about AWS CodeStar by reading the user guide. Ask questions or make
-suggestions on our forum.
-
-User Guide: http://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
-
-Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
 
 How Do I Add Template Resources to My Project?
 ------------------
