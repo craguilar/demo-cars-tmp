@@ -1,0 +1,13 @@
+{
+  "serializableModel": "true", 
+  "developerOrganization": "cmesh",
+  "interfaceOnly": "true", 
+  "library": "spring-boot", 
+  "hideGenerationTimestamp": "true", 
+  "basePackage": "com.cmymesh.service.demo.cars", 
+  "sourceFolder": "src/main/java",
+  "dateLibrary": "java8", 
+  "apiPackage" : "com.cmymesh.service.demo.cars.controller",
+  "modelPackage":"com.cmymesh.service.demo.cars.model.pojo",
+  "configPackage":"com.cmymesh.service.demo.cars.configuration"
+}

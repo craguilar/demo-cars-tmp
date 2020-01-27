@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+ 
+<!DOCTYPE suppressions PUBLIC
+     "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+     "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+  <!-- Generated code exceptions -->
+  <suppress checks="[a-zA-Z0-9]*" files="[\\/]generated-sources[\\/]" />
+  <suppress checks="ParameterName" files="[\\/]pojo[\\/]"/>
+  <!-- This checks get enforeced via formatter -->
+  <suppress checks="ImportOrder" files="[a-zA-Z0-9]*" />
+  <suppress checks="Indentation" files="[a-zA-Z0-9]*" />
+  <suppress checks="LineLength" files="[a-zA-Z0-9]*" />
+  <suppress checks="OperatorWrap" files="[a-zA-Z0-9]*" />
+  <suppress checks="ModifierOrder" files="[a-zA-Z0-9]*" />
+</suppressions>
