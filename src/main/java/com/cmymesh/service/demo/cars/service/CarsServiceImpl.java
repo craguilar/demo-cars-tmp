@@ -19,6 +19,9 @@ import com.cmymesh.service.demo.cars.repository.CarsRepository;
 @Service
 public class CarsServiceImpl implements CarsService {
 
+  // TODO : This could be declared as a bean.
+  private ModelMapper modelMapper = null;
+
   @Autowired
   CarsRepository carsRepository;
 
@@ -30,20 +33,8 @@ public class CarsServiceImpl implements CarsService {
   @Override
   public Optional<Car> getCar(String carId) {
     Optional<com.cmymesh.service.demo.cars.model.entity.Car> entity = carsRepository.findById(carId);
-
-    ModelMapper modelMapper = new ModelMapper();
-
-    Converter<Date, OffsetDateTime> toOffsetDateTime = new Converter<Date, OffsetDateTime>() {
-      @Override
-      public OffsetDateTime convert(MappingContext<Date, OffsetDateTime> context) {
-        return DateUtils.dateToOffsetDateTime(context.getSource());
-      }
-    };
-
-    modelMapper.addConverter(toOffsetDateTime);
-
     if (entity.isPresent()) {
-      Car pojo = modelMapper.map(entity.get(), Car.class);
+      Car pojo = getCarsModelMapper().map(entity.get(), Car.class);
       return Optional.of(pojo);
     }
     return Optional.empty();
@@ -58,6 +49,21 @@ public class CarsServiceImpl implements CarsService {
   @Override
   public Optional<Car> updateCar(Car car) {
     throw new UnsupportedOperationException();
+  }
+
+  public ModelMapper getCarsModelMapper() {
+    if (modelMapper != null) {
+      return modelMapper;
+    }
+    modelMapper = new ModelMapper();
+    Converter<Date, OffsetDateTime> toOffsetDateTime = new Converter<Date, OffsetDateTime>() {
+      @Override
+      public OffsetDateTime convert(MappingContext<Date, OffsetDateTime> context) {
+        return DateUtils.dateToOffsetDateTime(context.getSource());
+      }
+    };
+    modelMapper.addConverter(toOffsetDateTime);
+    return modelMapper;
   }
 
 }
