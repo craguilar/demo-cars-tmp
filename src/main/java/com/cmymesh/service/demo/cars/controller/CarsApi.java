@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cmymesh.service.demo.cars.model.pojo.Car;
+import com.cmymesh.service.demo.cars.model.pojo.CarSummary;
 import com.cmymesh.service.demo.cars.model.pojo.Error;
 
 import io.swagger.annotations.Api;
@@ -35,7 +36,7 @@ public interface CarsApi {
       @ApiResponse(code = 409, message = "Conflict with resource.", response = Error.class),
       @ApiResponse(code = 500, message = "Internal server error.", response = Error.class),
       @ApiResponse(code = 200, message = "Unknown Error", response = Error.class) })
-  @PostMapping(value = "/cars/", produces = { "application/json" })
+  @PostMapping(value = "/20200201/cars/", produces = { "application/json" })
   ResponseEntity<Car> addCar(@ApiParam(value = "New car to add", required = true) @Valid @RequestBody Car body);
 
   @ApiOperation(value = "Get car details per plate id", nickname = "getCar", notes = "Get car details per car id  ", response = Car.class, tags = {
@@ -46,7 +47,7 @@ public interface CarsApi {
       @ApiResponse(code = 404, message = "Not found.", response = Error.class),
       @ApiResponse(code = 500, message = "Internal server error.", response = Error.class),
       @ApiResponse(code = 200, message = "Unknown Error", response = Error.class) })
-  @GetMapping(value = "/cars/{carId}", produces = { "application/json" })
+  @GetMapping(value = "/20200201/cars/{carId}", produces = { "application/json" })
   ResponseEntity<Car> getCar(@ApiParam(value = "", required = true) @PathVariable("carId") String carId,
       @ApiParam(value = "Partial response refers to an optimization technique offered by the RESTful web APIs to return only the information  (fields) required by the client. In this mechanism, the client sends the required field names as the query parameters for an API to the server, and the server trims down the default response content by removing the fields that are not required by the client. The parameter used to control what fields to return should be a query string parameter called \"fields\" of type array, provide the values as enums, and usecollectionFormat ") @Valid @RequestParam(value = "fields", required = false) List<String> fields);
 
@@ -58,8 +59,8 @@ public interface CarsApi {
       @ApiResponse(code = 404, message = "Not found.", response = Error.class),
       @ApiResponse(code = 500, message = "Internal server error.", response = Error.class),
       @ApiResponse(code = 200, message = "Unknown Error", response = Error.class) })
-  @GetMapping(value = "/cars/", produces = { "application/json" })
-  ResponseEntity<Object> listCars(
+  @GetMapping(value = "/20200201/cars/", produces = { "application/json" })
+  ResponseEntity<List<CarSummary>> listCars(
       @ApiParam(value = "Partial response refers to an optimization technique offered by the RESTful web APIs to return only the information  (fields) required by the client. In this mechanism, the client sends the required field names as the query parameters for an API to the server, and the server trims down the default response content by removing the fields that are not required by the client. The parameter used to control what fields to return should be a query string parameter called \"fields\" of type array, provide the values as enums, and usecollectionFormat ") @Valid @RequestParam(value = "fields", required = false) List<String> fields,
       @Min(1) @Max(1000) @ApiParam(value = "The maximum number of items to return in a paginated \"List\" call. Example: `500` ") @Valid @RequestParam(value = "limit", required = false) Integer limit,
       @Size(min = 1, max = 512) @ApiParam(value = "The value of page to display. ") @Valid @RequestParam(value = "page", required = false) String page,
@@ -73,7 +74,7 @@ public interface CarsApi {
       @ApiResponse(code = 404, message = "Not found.", response = Error.class),
       @ApiResponse(code = 500, message = "Internal server error.", response = Error.class),
       @ApiResponse(code = 200, message = "Unknown Error", response = Error.class) })
-  @PutMapping(value = "/cars/", produces = { "application/json" })
+  @PutMapping(value = "/20200201/cars/", produces = { "application/json" })
   ResponseEntity<Car> updateCar(@ApiParam(value = "Car to update", required = true) @Valid @RequestBody Car body);
 
 }

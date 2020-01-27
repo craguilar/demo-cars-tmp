@@ -48,7 +48,7 @@ CREATE TABLE permissions (
 );
 -- Actual model
 CREATE TABLE cars (
-    cars_id     VARCHAR(32),-- This is the plate
+  cars_id     VARCHAR(32),-- This is the plate
   make       VARCHAR(32), -- This could be a catalog
   model      VARCHAR(32), -- This could be a catalog
   description VARCHAR(1024),
