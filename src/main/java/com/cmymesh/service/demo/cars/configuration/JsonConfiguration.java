@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import com.cmymesh.service.demo.cars.configuration.serialization.CustomDateSerializer;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
@@ -31,7 +30,6 @@ public class JsonConfiguration {
 
     objectMapper.setTimeZone(TimeZone.getTimeZone("UTC"));
     objectMapper.registerModule(new JavaTimeModule());
-    objectMapper.setSerializationInclusion(Include.NON_NULL);
 
     objectMapper.setFilterProvider(new SimpleFilterProvider().setFailOnUnknownId(false));
 

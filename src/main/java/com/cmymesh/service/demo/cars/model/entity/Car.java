@@ -1,6 +1,6 @@
 package com.cmymesh.service.demo.cars.model.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,8 +39,14 @@ public class Car {
   private String company;
 
   @Column(name = "created_on")
-  private Date createdOn;
+  private Date timeCreated;
 
   @Column(name = "created_by")
   private String createdBy;
+
+  @Column(name = "updated_on")
+  private Date timeUpdated;
+
+  @Column(name = "updated_by")
+  private String updatedBy;
 }

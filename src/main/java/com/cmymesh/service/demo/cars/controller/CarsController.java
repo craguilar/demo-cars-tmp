@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cmymesh.service.demo.cars.commons.exceptions.InternalServerErrorException;
 import com.cmymesh.service.demo.cars.commons.exceptions.NotFoundException;
 import com.cmymesh.service.demo.cars.model.pojo.Car;
 import com.cmymesh.service.demo.cars.model.pojo.CarSummary;
@@ -26,19 +27,21 @@ public class CarsController implements CarsApi {
 
   @Override
   public ResponseEntity<Car> addCar(@Valid Car body) {
-    throw new UnsupportedOperationException();
+
+    Optional<Car> pojo = carService.addCar(body);
+    if (pojo.isPresent()) {
+      return new ResponseEntity<>(pojo.get(), HttpStatus.CREATED);
+    }
+    throw new InternalServerErrorException("Unexpected error while creating entity");
   }
 
   @Override
   public ResponseEntity<Car> getCar(String carId, @Valid List<String> fields) {
-
     ControllerUtils.validateMandatoryParameter(carId, "carId");
-
     Optional<Car> pojo = carService.getCar(carId);
     if (pojo.isPresent()) {
       return new ResponseEntity<>(pojo.get(), HttpStatus.OK);
     }
-
     throw new NotFoundException();
 
   }
@@ -51,7 +54,14 @@ public class CarsController implements CarsApi {
 
   @Override
   public ResponseEntity<Car> updateCar(@Valid Car body) {
-    throw new UnsupportedOperationException();
+
+    Optional<Car> pojo = carService.addCar(body);
+
+    if (pojo.isPresent()) {
+      return new ResponseEntity<>(pojo.get(), HttpStatus.CREATED);
+    }
+    throw new NotFoundException();
+
   }
 
 }

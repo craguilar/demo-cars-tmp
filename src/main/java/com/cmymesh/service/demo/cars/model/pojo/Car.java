@@ -47,8 +47,8 @@ public class Car implements Serializable {
   @JsonProperty("engine_serial_number")
   private String engineSerialNumber = null;
 
-  @JsonProperty("comparny")
-  private String comparny = null;
+  @JsonProperty("company")
+  private String company = null;
 
   @JsonProperty("timeCreated")
   private OffsetDateTime timeCreated = null;
@@ -219,24 +219,24 @@ public class Car implements Serializable {
     this.engineSerialNumber = engineSerialNumber;
   }
 
-  public Car comparny(String comparny) {
-    this.comparny = comparny;
+  public Car company(String company) {
+    this.company = company;
     return this;
   }
 
   /**
-   * Get comparny
+   * Get company
    * 
-   * @return comparny
+   * @return company
    **/
   @ApiModelProperty(value = "")
 
-  public String getComparny() {
-    return comparny;
+  public String getCompany() {
+    return company;
   }
 
-  public void setComparny(String comparny) {
-    this.comparny = comparny;
+  public void setCompany(String company) {
+    this.company = company;
   }
 
   public Car timeCreated(OffsetDateTime timeCreated) {
@@ -296,15 +296,14 @@ public class Car implements Serializable {
         && Objects.equals(this.model, car.model) && Objects.equals(this.description, car.description)
         && Objects.equals(this.typeOfUse, car.typeOfUse) && Objects.equals(this.nationalKey, car.nationalKey)
         && Objects.equals(this.serialNumber, car.serialNumber)
-        && Objects.equals(this.engineSerialNumber, car.engineSerialNumber)
-        && Objects.equals(this.comparny, car.comparny) && Objects.equals(this.timeCreated, car.timeCreated)
-        && Objects.equals(this.timeUpdated, car.timeUpdated);
+        && Objects.equals(this.engineSerialNumber, car.engineSerialNumber) && Objects.equals(this.company, car.company)
+        && Objects.equals(this.timeCreated, car.timeCreated) && Objects.equals(this.timeUpdated, car.timeUpdated);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(plate, make, model, description, typeOfUse, nationalKey, serialNumber, engineSerialNumber,
-        comparny, timeCreated, timeUpdated);
+        company, timeCreated, timeUpdated);
   }
 
   @Override
@@ -320,7 +319,7 @@ public class Car implements Serializable {
     sb.append("    nationalKey: ").append(toIndentedString(nationalKey)).append("\n");
     sb.append("    serialNumber: ").append(toIndentedString(serialNumber)).append("\n");
     sb.append("    engineSerialNumber: ").append(toIndentedString(engineSerialNumber)).append("\n");
-    sb.append("    comparny: ").append(toIndentedString(comparny)).append("\n");
+    sb.append("    company: ").append(toIndentedString(company)).append("\n");
     sb.append("    timeCreated: ").append(toIndentedString(timeCreated)).append("\n");
     sb.append("    timeUpdated: ").append(toIndentedString(timeUpdated)).append("\n");
     sb.append("}");
