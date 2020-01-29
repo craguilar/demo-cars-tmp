@@ -2,14 +2,16 @@ package com.cmymesh.service.demo.cars.service;
 
 import java.time.OffsetDateTime;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -60,8 +62,11 @@ public class CarsServiceImpl implements CarsService {
 
   @Override
   @Transactional(readOnly = true)
-  public List<CarSummary> listCars(PaginationParameters pagination) {
-    throw new UnsupportedOperationException();
+  public Stream<CarSummary> listCars(PaginationParameters pagination) {
+
+    PageRequest pageable = PageRequest.of(0, 5, Sort.by("price", "name"));
+    return null;
+
   }
 
   @Override

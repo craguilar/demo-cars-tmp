@@ -2,6 +2,8 @@ package com.cmymesh.service.demo.cars.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -23,7 +25,6 @@ import com.cmymesh.service.demo.cars.service.CarsService;
 @RestController
 public class CarsController implements CarsApi {
 
-  
   @Autowired
   CarsService carService;
 
@@ -52,13 +53,15 @@ public class CarsController implements CarsApi {
   public ResponseEntity<List<CarSummary>> listCars(@Valid List<String> fields, @Min(1) @Max(1000) @Valid Integer limit,
       @Size(min = 1, max = 512) @Valid String page, @Valid String sortOrder, @Valid String sortBy) {
 
-    // TODO : Need an object which can hold pagination details
-    // it needs limit , page , sortOrder and sortBy
-    PaginationParameters pagination = new PaginationParameters(limit, page, sortOrder, sortBy);
-    throw new UnsupportedOperationException();
+    PaginationParameters pagination = new PaginationParameters(ControllerUtils.getLimit(limit),
+        ControllerUtils.getPage(page), ControllerUtils.getSortOrder(sortOrder), ControllerUtils.getSortBy(sortBy));
+
+    Stream<CarSummary> list = carService.listCars(pagination);
+    if (list.count() > 0) {
+      return new ResponseEntity<>(list.collect(Collectors.toList()), HttpStatus.OK);
+    }
+    throw new NotFoundException();
   }
-
-
 
   @Override
   public ResponseEntity<Car> updateCar(@Valid Car body) {
