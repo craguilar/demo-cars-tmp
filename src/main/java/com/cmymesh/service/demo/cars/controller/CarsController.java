@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cmymesh.service.demo.cars.commons.controller.PaginationParameters;
 import com.cmymesh.service.demo.cars.commons.exceptions.InternalServerErrorException;
 import com.cmymesh.service.demo.cars.commons.exceptions.NotFoundException;
 import com.cmymesh.service.demo.cars.model.pojo.Car;
@@ -22,6 +23,7 @@ import com.cmymesh.service.demo.cars.service.CarsService;
 @RestController
 public class CarsController implements CarsApi {
 
+  
   @Autowired
   CarsService carService;
 
@@ -49,8 +51,14 @@ public class CarsController implements CarsApi {
   @Override
   public ResponseEntity<List<CarSummary>> listCars(@Valid List<String> fields, @Min(1) @Max(1000) @Valid Integer limit,
       @Size(min = 1, max = 512) @Valid String page, @Valid String sortOrder, @Valid String sortBy) {
+
+    // TODO : Need an object which can hold pagination details
+    // it needs limit , page , sortOrder and sortBy
+    PaginationParameters pagination = new PaginationParameters(limit, page, sortOrder, sortBy);
     throw new UnsupportedOperationException();
   }
+
+
 
   @Override
   public ResponseEntity<Car> updateCar(@Valid Car body) {

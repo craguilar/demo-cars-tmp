@@ -40,11 +40,6 @@ public class ControllerResponseAdvice implements ResponseBodyAdvice<Object> {
     return arg0;
   }
 
-  /**
-   * @param uri
-   * @return null if no valid fields attribute found , else the fields value
-   *         with comma separated values
-   */
   protected static String getUriQueryFieldsParameter(URI uri) {
     List<String> fields = null;
     String returnValue = null;

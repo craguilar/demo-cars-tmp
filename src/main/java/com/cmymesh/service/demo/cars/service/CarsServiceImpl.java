@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import com.cmymesh.service.demo.cars.commons.controller.PaginationParameters;
 import com.cmymesh.service.demo.cars.commons.util.DateUtils;
 import com.cmymesh.service.demo.cars.model.pojo.Car;
 import com.cmymesh.service.demo.cars.model.pojo.CarSummary;
@@ -32,8 +33,9 @@ public class CarsServiceImpl implements CarsService {
   @Override
   public Optional<Car> addCar(Car car) {
 
-    if (car == null || StringUtils.isEmpty(car.getMake()))
+    if (car == null || StringUtils.isEmpty(car.getMake())) {
       return Optional.empty();
+    }
 
     com.cmymesh.service.demo.cars.model.entity.Car entity = pojoToEntityModelMapper().map(car,
         com.cmymesh.service.demo.cars.model.entity.Car.class);
@@ -58,9 +60,7 @@ public class CarsServiceImpl implements CarsService {
 
   @Override
   @Transactional(readOnly = true)
-  public List<CarSummary> listCars(
-  // Need pagination parameters
-  ) {
+  public List<CarSummary> listCars(PaginationParameters pagination) {
     throw new UnsupportedOperationException();
   }
 

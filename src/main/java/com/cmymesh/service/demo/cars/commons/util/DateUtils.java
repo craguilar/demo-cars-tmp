@@ -10,12 +10,6 @@ public class DateUtils {
 
   }
 
-  /**
-   * converts java.util.Date to java.time.OffsetDateTime
-   * 
-   * @param utilDate
-   * @return
-   */
   public static OffsetDateTime dateToOffsetDateTime(Date utilDate) {
     return utilDate == null ? null : utilDate.toInstant().atOffset(ZoneOffset.UTC);
   }

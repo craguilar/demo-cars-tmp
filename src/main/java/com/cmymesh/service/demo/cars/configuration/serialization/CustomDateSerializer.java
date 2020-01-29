@@ -26,8 +26,8 @@ public class CustomDateSerializer extends JsonSerializer<OffsetDateTime> {
 
   @Override
   public void serialize(OffsetDateTime value, JsonGenerator gen, SerializerProvider provider)
-      throws IOException, JsonProcessingException {// NOSONAR This is part of
-                                                   // method signature.
+      throws IOException, JsonProcessingException { // NOSONAR This is part of
+                                                    // method signature.
     gen.writeString(sdf.format(value));
   }
 }

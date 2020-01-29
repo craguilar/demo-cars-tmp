@@ -24,34 +24,34 @@ public class ApiExceptionHandler {
   private Logger log = LoggerFactory.getLogger(ApiExceptionHandler.class);
 
   @ExceptionHandler(BadRequestException.class)
-  public ResponseEntity<Error> handleException(BadRequestException e) {
-    return buildResponseEntity("400", e.getMessage(), HttpStatus.BAD_REQUEST);
+  public ResponseEntity<Error> handleException(BadRequestException ex) {
+    return buildResponseEntity("400", ex.getMessage(), HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(InternalServerErrorException.class)
-  public ResponseEntity<Error> handleException(InternalServerErrorException e) {
-    return buildResponseEntity("500", e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+  public ResponseEntity<Error> handleException(InternalServerErrorException ex) {
+    return buildResponseEntity("500", ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
   @ExceptionHandler(NotFoundException.class)
-  public ResponseEntity<Error> handleException(NotFoundException e) {
-    return buildResponseEntity("404", e.getMessage(), HttpStatus.NOT_FOUND);
+  public ResponseEntity<Error> handleException(NotFoundException ex) {
+    return buildResponseEntity("404", ex.getMessage(), HttpStatus.NOT_FOUND);
   }
 
   @ExceptionHandler(ResourceConflictException.class)
-  public ResponseEntity<Error> handleException(ResourceConflictException e) {
-    return buildResponseEntity("409", e.getMessage(), HttpStatus.CONFLICT);
+  public ResponseEntity<Error> handleException(ResourceConflictException ex) {
+    return buildResponseEntity("409", ex.getMessage(), HttpStatus.CONFLICT);
   }
 
   @ExceptionHandler(UnauthorizedException.class)
-  public ResponseEntity<Error> handleException(UnauthorizedException e) {
-    return buildResponseEntity("401", e.getMessage(), HttpStatus.UNAUTHORIZED);
+  public ResponseEntity<Error> handleException(UnauthorizedException ex) {
+    return buildResponseEntity("401", ex.getMessage(), HttpStatus.UNAUTHORIZED);
   }
 
   @ExceptionHandler({ Exception.class })
-  public ResponseEntity<Error> handleAll(Exception e) {
-    log.error("", e);
-    return buildResponseEntity("500", e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+  public ResponseEntity<Error> handleAll(Exception ex) {
+    log.error("", ex);
+    return buildResponseEntity("500", ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
   private ResponseEntity<Error> buildResponseEntity(String code, String message, HttpStatus status) {
