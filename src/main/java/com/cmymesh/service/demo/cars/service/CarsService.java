@@ -1,7 +1,7 @@
 package com.cmymesh.service.demo.cars.service;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import com.cmymesh.service.demo.cars.commons.controller.PaginationParameters;
 import com.cmymesh.service.demo.cars.model.pojo.Car;
@@ -15,7 +15,7 @@ public interface CarsService {
 
   Optional<Car> getCar(String carId);
 
-  Stream<CarSummary> listCars(PaginationParameters pagination);
+  List<CarSummary> listCars(PaginationParameters pagination);
 
   Optional<Car> updateCar(Car car);
 }

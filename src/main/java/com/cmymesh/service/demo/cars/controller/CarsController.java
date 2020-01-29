@@ -2,8 +2,6 @@ package com.cmymesh.service.demo.cars.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
@@ -56,9 +54,9 @@ public class CarsController implements CarsApi {
     PaginationParameters pagination = new PaginationParameters(ControllerUtils.getLimit(limit),
         ControllerUtils.getPage(page), ControllerUtils.getSortOrder(sortOrder), ControllerUtils.getSortBy(sortBy));
 
-    Stream<CarSummary> list = carService.listCars(pagination);
-    if (list.count() > 0) {
-      return new ResponseEntity<>(list.collect(Collectors.toList()), HttpStatus.OK);
+    List<CarSummary> list = carService.listCars(pagination);
+    if (list != null && !list.isEmpty()) {
+      return new ResponseEntity<>(list, HttpStatus.OK);
     }
     throw new NotFoundException();
   }
@@ -66,7 +64,7 @@ public class CarsController implements CarsApi {
   @Override
   public ResponseEntity<Car> updateCar(@Valid Car body) {
 
-    Optional<Car> pojo = carService.addCar(body);
+    Optional<Car> pojo = carService.updateCar(body);
 
     if (pojo.isPresent()) {
       return new ResponseEntity<>(pojo.get(), HttpStatus.CREATED);
