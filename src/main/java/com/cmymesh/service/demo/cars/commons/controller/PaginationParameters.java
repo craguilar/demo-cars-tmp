@@ -9,7 +9,7 @@ public class PaginationParameters {
 
   private Integer limit;
 
-  private String page;
+  private Integer page;
 
   private String sortOrder;
 

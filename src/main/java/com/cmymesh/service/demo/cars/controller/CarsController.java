@@ -23,7 +23,6 @@ import com.cmymesh.service.demo.cars.service.CarsService;
 @RestController
 public class CarsController implements CarsApi {
 
-  
   @Autowired
   CarsService carService;
 
@@ -52,18 +51,20 @@ public class CarsController implements CarsApi {
   public ResponseEntity<List<CarSummary>> listCars(@Valid List<String> fields, @Min(1) @Max(1000) @Valid Integer limit,
       @Size(min = 1, max = 512) @Valid String page, @Valid String sortOrder, @Valid String sortBy) {
 
-    // TODO : Need an object which can hold pagination details
-    // it needs limit , page , sortOrder and sortBy
-    PaginationParameters pagination = new PaginationParameters(limit, page, sortOrder, sortBy);
-    throw new UnsupportedOperationException();
+    PaginationParameters pagination = new PaginationParameters(ControllerUtils.getLimit(limit),
+        ControllerUtils.getPage(page), ControllerUtils.getSortOrder(sortOrder), ControllerUtils.getSortBy(sortBy));
+
+    List<CarSummary> list = carService.listCars(pagination);
+    if (list != null && !list.isEmpty()) {
+      return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+    throw new NotFoundException();
   }
-
-
 
   @Override
   public ResponseEntity<Car> updateCar(@Valid Car body) {
 
-    Optional<Car> pojo = carService.addCar(body);
+    Optional<Car> pojo = carService.updateCar(body);
 
     if (pojo.isPresent()) {
       return new ResponseEntity<>(pojo.get(), HttpStatus.CREATED);

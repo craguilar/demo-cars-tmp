@@ -1,4 +1,4 @@
-package com.aws.codestar.projecttemplates.controller;
+package com.cmymesh.service.demo.cars.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -10,6 +10,10 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -61,7 +65,14 @@ public class CarsServiceImpl implements CarsService {
   @Override
   @Transactional(readOnly = true)
   public List<CarSummary> listCars(PaginationParameters pagination) {
-    throw new UnsupportedOperationException();
+
+    Pageable pageable = PageRequest.of(pagination.getPage(), pagination.getLimit(),
+        Sort.by(Sort.Direction.valueOf(pagination.getSortOrder()), pagination.getSortBy()));
+
+    Page<com.cmymesh.service.demo.cars.model.entity.Car> cars = carsRepository.findAll(pageable);
+
+    return cars.map(this::getCarSummaryByCar).toList();
+
   }
 
   @Override
@@ -72,6 +83,16 @@ public class CarsServiceImpl implements CarsService {
     }
     carsRepository.save(entity.get());
     return Optional.of(car);
+  }
+
+  private CarSummary getCarSummaryByCar(com.cmymesh.service.demo.cars.model.entity.Car entity) {
+    CarSummary summary = new CarSummary();
+    summary.setPlate(entity.getId());
+    summary.setModel(entity.getModel());
+    summary.setMake(entity.getMake());
+    summary.setDescription(entity.getDescription());
+    summary.setTypeOfUse(entity.getTypeOfUse());
+    return summary;
   }
 
   public ModelMapper entityToPojoModelMapper() {
