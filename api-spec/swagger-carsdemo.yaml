@@ -188,7 +188,7 @@ definitions:
         type: string
       serialNumber:
         type: string
-      engine_serial_number:
+      engineSerialNumber:
         type: string
       comparny :
         type: string

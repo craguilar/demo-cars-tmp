@@ -27,6 +27,7 @@ public class CarsController implements CarsApi {
   @Autowired
   CarsService carService;
 
+  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @Override
   public ResponseEntity<Car> addCar(@Valid Car body) {
 
@@ -37,6 +38,7 @@ public class CarsController implements CarsApi {
     throw new InternalServerErrorException("Unexpected error while creating entity");
   }
 
+  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @Override
   public ResponseEntity<Car> getCar(String carId, @Valid List<String> fields) {
     ControllerUtils.validateMandatoryParameter(carId, "carId");
@@ -63,6 +65,7 @@ public class CarsController implements CarsApi {
     throw new NotFoundException();
   }
 
+  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @Override
   public ResponseEntity<Car> updateCar(@Valid Car body) {
 
