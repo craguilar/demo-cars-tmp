@@ -54,8 +54,6 @@ Resources:
         Value: !Sub '${ProjectId}-WebApp${Stage}'
       - Key: Name
         Value: !Sub '${ProjectId}-WebApp${Stage}'
-      LaunchTemplateSpecification:
-        - !Ref EC2LTDemoCars
       UserData:
         Fn::Base64:
           Fn::Sub: |
