@@ -3,7 +3,7 @@ info:
   title: Cars demo
   description: |
     CMesh API User Profile, previously known as user resume.
-  version: ""
+  version: "20200201"
   contact:
     email: "caruizag@gmail.com"
 host: "localhost:8080"
@@ -13,9 +13,7 @@ schemes:
 - "http"
 produces:
 - application/json
-securityDefinitions:
-  BasicAuth:
-    type: basic
+
 paths:
   /cars/{carId}:
     get:
@@ -45,8 +43,6 @@ paths:
           $ref: '#/responses/404'
         500:
           $ref: '#/responses/500'
-        default:
-          $ref: '#/responses/default'
   
   /cars/:  
     get:
@@ -77,8 +73,6 @@ paths:
           $ref: '#/responses/404'
         500:
           $ref: '#/responses/500'
-        default:
-          $ref: '#/responses/default'
     post:
       tags:
       - "cars"
@@ -108,8 +102,6 @@ paths:
           $ref: '#/responses/409'
         500:
           $ref: '#/responses/500'
-        default:
-          $ref: '#/responses/default'
     put:
       tags:
       - "cars"
@@ -137,8 +129,6 @@ paths:
           $ref: '#/responses/404'
         500:
           $ref: '#/responses/500'
-        default:
-          $ref: '#/responses/default'
 definitions:
   
   CarSummary:

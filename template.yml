@@ -49,6 +49,8 @@ Resources:
         - UseSubnet
         - !Ref 'SubnetId'
         - !Ref 'AWS::NoValue'
+      Monitoring:
+         Enabled : true
       Tags:
       - Key: Environment
         Value: !Sub '${ProjectId}-WebApp${Stage}'
@@ -73,7 +75,7 @@ Resources:
     Description: The default Amazon EC2 security group that will be created for the Amazon EC2 Linux instances.
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enable HTTP access via port 80 and SSH access via port 22.
+      GroupDescription: Enable HTTP access via SSH access via port 22 (removed access via port 80 it will be secured via API Gateway).
       SecurityGroupIngress:
       - IpProtocol: tcp
         FromPort: '22'
