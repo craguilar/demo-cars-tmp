@@ -80,9 +80,4 @@ Resources:
         ToPort: '22'
         CidrIp: 0.0.0.0/0
       VpcId: !Ref 'VpcId'
-  EC2LTDemoCars:
-    Type: 'AWS::EC2::LaunchTemplate'
-    Properties:
-      Monitoring:
-        Enabled: true
 
