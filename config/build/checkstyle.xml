@@ -32,7 +32,12 @@
         <module name="FileTabCharacter">
             <property name="eachLine" value="true"/>
         </module>
-
+    <!--  https://github.com/checkstyle/eclipse-cs/issues/190 -->
+    <module name="LineLength">
+        <!-- Increase line limit from 100 to accommodate existing line styles -mgius -->
+        <property name="max" value="180"/>
+        <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+    </module>
     <module name="TreeWalker">
         <!-- Make @SuppressWarnings available to checkstyle" -->
         <module name="SuppressWarningsHolder" />
@@ -46,11 +51,6 @@
             <property name="allowEscapesForControlCharacters" value="true"/>
             <property name="allowByTailComment" value="true"/>
             <property name="allowNonPrintableEscapes" value="true"/>
-        </module>
-        <module name="LineLength">
-            <!-- Increase line limit from 100 to accommodate existing line styles -mgius -->
-            <property name="max" value="180"/>
-            <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
         </module>
         <module name="AvoidStarImport"/>
         <module name="OneTopLevelClass"/>
@@ -191,15 +191,19 @@
         <module name="JavadocMethod">
             <property name="scope" value="public"/>
             <property name="allowMissingParamTags" value="true"/>
-            <property name="allowMissingThrowsTags" value="true"/>
+            
             <property name="allowMissingReturnTag" value="true"/>
             <!-- increase minLineCount so that it will only trigger on
                  laughably long methods.  We want JavaDoc that exists to be
                  good, but we don't want to enforce/mandate any particular
                  amount or level of JavaDoc -->
-            <property name="minLineCount" value="500"/>
+            
             <property name="allowedAnnotations" value="Override, Test"/>
-            <property name="allowThrowsTagsForSubclasses" value="true"/>
+  
+        </module>
+        <!--  https://github.com/checkstyle/checkstyle/issues/6703 -->
+        <module name="MissingJavadocMethodCheck">
+          <property name="minLineCount" value="500"/>
         </module>
         <module name="JavadocStyle">
             <property name="checkFirstSentence" value="false"/>
