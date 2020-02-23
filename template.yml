@@ -41,7 +41,7 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       KeyName: !Ref 'KeyPairName'
       NetworkInterfaces:
-      - AssociatePublicIpAddress: false
+      - AssociatePublicIpAddress: true
         DeviceIndex: 0
         GroupSet:
         - !Ref 'WebAppSG'
@@ -75,10 +75,6 @@ Resources:
     Properties:
       GroupDescription: Enable HTTP access via port 80 and SSH access via port 22.
       SecurityGroupIngress:
-      - IpProtocol: tcp
-        FromPort: '80'
-        ToPort: '80'
-        CidrIp: 0.0.0.0/0
       - IpProtocol: tcp
         FromPort: '22'
         ToPort: '22'
