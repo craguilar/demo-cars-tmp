@@ -4,6 +4,14 @@ Demo Cars serice
 This project was originated from sample code coming from AWS CodeDeploy.
 This project is deployed by AWS CodeDeploy and AWS CloudFormation to an Amazon EC2 server.
 
+ToDo 
+-----------
+
+* Need to create a deployable ec2 artifact not visible via public API.
+* Need to automatically attach a NLB , with again no public visibility.
+* Finally , once the NLB is create I wrap services on API Gateway , includes authenticatio. Voala.
+* Not yet , need to attach an actual DB .
+
 What's Here
 -----------
 
