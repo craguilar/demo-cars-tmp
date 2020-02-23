@@ -44,7 +44,7 @@ public class Car implements Serializable {
   @JsonProperty("serialNumber")
   private String serialNumber = null;
 
-  @JsonProperty("engine_serial_number")
+  @JsonProperty("engineSerialNumber")
   private String engineSerialNumber = null;
 
   @JsonProperty("company")

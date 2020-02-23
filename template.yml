@@ -41,7 +41,7 @@ Resources:
       InstanceType: !Ref 'InstanceType'
       KeyName: !Ref 'KeyPairName'
       NetworkInterfaces:
-      - AssociatePublicIpAddress: true
+      - AssociatePublicIpAddress: false
         DeviceIndex: 0
         GroupSet:
         - !Ref 'WebAppSG'

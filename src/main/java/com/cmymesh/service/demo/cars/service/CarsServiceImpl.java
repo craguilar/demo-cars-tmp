@@ -81,7 +81,7 @@ public class CarsServiceImpl implements CarsService {
     if (!entity.isPresent()) {
       return Optional.empty();
     }
-    carsRepository.save(entity.get());
+    carsRepository.save(pojoToEntityModelMapper().map(car, com.cmymesh.service.demo.cars.model.entity.Car.class));
     return Optional.of(car);
   }
 
