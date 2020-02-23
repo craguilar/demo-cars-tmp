@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cmymesh.service.demo.cars.commons.controller.PaginationParameters;
@@ -27,7 +26,6 @@ public class CarsController implements CarsApi {
   @Autowired
   CarsService carService;
 
-  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @Override
   public ResponseEntity<Car> addCar(@Valid Car body) {
 
@@ -38,7 +36,6 @@ public class CarsController implements CarsApi {
     throw new InternalServerErrorException("Unexpected error while creating entity");
   }
 
-  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @Override
   public ResponseEntity<Car> getCar(String carId, @Valid List<String> fields) {
     ControllerUtils.validateMandatoryParameter(carId, "carId");
@@ -50,7 +47,6 @@ public class CarsController implements CarsApi {
 
   }
 
-  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @Override
   public ResponseEntity<List<CarSummary>> listCars(@Valid List<String> fields, @Min(1) @Max(1000) @Valid Integer limit,
       @Size(min = 1, max = 512) @Valid String page, @Valid String sortOrder, @Valid String sortBy) {
@@ -65,7 +61,6 @@ public class CarsController implements CarsApi {
     throw new NotFoundException();
   }
 
-  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @Override
   public ResponseEntity<Car> updateCar(@Valid Car body) {
 

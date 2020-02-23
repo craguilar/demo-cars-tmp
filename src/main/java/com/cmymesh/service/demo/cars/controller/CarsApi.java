@@ -8,7 +8,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,7 +51,6 @@ public interface CarsApi {
   ResponseEntity<Car> getCar(@ApiParam(value = "", required = true) @PathVariable("carId") String carId,
       @ApiParam(value = "Partial response refers to an optimization technique offered by the RESTful web APIs to return only the information  (fields) required by the client. In this mechanism, the client sends the required field names as the query parameters for an API to the server, and the server trims down the default response content by removing the fields that are not required by the client. The parameter used to control what fields to return should be a query string parameter called \"fields\" of type array, provide the values as enums, and usecollectionFormat ") @Valid @RequestParam(value = "fields", required = false) List<String> fields);
 
-  @CrossOrigin(origins = "*", allowedHeaders = "*")
   @ApiOperation(value = "Get user details per user Id", nickname = "listCars", notes = "Get user details per user id  ", response = Object.class, tags = {
       "cars", })
   @ApiResponses(value = { @ApiResponse(code = 200, message = "Successful operation ", response = Object.class),
