@@ -123,8 +123,7 @@ Resources:
       HealthCheckIntervalSeconds: 30
       HealthCheckPort: traffic-port
       HealthCheckProtocol: TCP
-      HealthCheckTimeoutSeconds: 10
-      HealthyThresholdCount: 3r
+      HealthCheckTimeoutSeconds: 10r
       TargetGroupAttributes:
       - Key: deregistration_delay.timeout_seconds
         Value: '300'
