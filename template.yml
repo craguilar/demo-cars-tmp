@@ -100,3 +100,32 @@ Resources:
       Scheme: internal
       Subnets:
         - !Ref 'SubnetId'
+  LoadBalancerWebAppListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+      - Type: forward
+        TargetGroupArn:
+          - !Ref 'LoadBalancerWebAppTargetGroup'
+      LoadBalancerArn:
+        - !Ref LoadBalancerWebApp
+      Port: '80'
+      Protocol: TCP
+  LoadBalancerWebAppTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: ec2-WebApp-nlb-tg
+      Port: 80
+      Protocol: TCP
+      TargetType: instance
+      VpcId: !Ref 'VpcId'
+      HealthCheckEnabled: true
+      HealthCheckIntervalSeconds: 30
+      HealthCheckPort: traffic-port
+      HealthCheckProtocol: TCP
+      HealthCheckTimeoutSeconds: 10
+      HealthyThresholdCount: 3
+      UnhealthyThresholdCount: 3r
+      TargetGroupAttributes:
+      - Key: deregistration_delay.timeout_seconds
+        Value: '300'
