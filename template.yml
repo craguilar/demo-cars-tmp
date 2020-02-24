@@ -106,8 +106,7 @@ Resources:
       DefaultActions:
       - Type: forward
         TargetGroupArn: !Ref 'LoadBalancerWebAppTargetGroup'
-      LoadBalancerArn:
-        - !Ref LoadBalancerWebApp
+      LoadBalancerArn: !Ref LoadBalancerWebApp
       Port: '80'
       Protocol: TCP
   LoadBalancerWebAppTargetGroup:
