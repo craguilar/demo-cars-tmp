@@ -124,6 +124,9 @@ Resources:
       HealthCheckTimeoutSeconds: '10'
       HealthyThresholdCount: '3'
       UnhealthyThresholdCount: '3'
+      Targets: 
+      - Id: !Ref 'WebApp01'
+        Port: 80
       TargetGroupAttributes:
       - Key: deregistration_delay.timeout_seconds
         Value: '300'
