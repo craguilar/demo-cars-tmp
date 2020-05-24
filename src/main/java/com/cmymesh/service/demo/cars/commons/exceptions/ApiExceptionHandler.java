@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.cmymesh.service.demo.cars.model.pojo.Error;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * This class is used as an Exception Handling Mechanism for SAPI (CSA Service
  * API Template project) based on common HTTP Exceptions. For more information
@@ -18,10 +20,9 @@ import com.cmymesh.service.demo.cars.model.pojo.Error;
  * @author caruruiz
  *
  */
+@Slf4j
 @ControllerAdvice
 public class ApiExceptionHandler {
-
-  private Logger log = LoggerFactory.getLogger(ApiExceptionHandler.class);
 
   @ExceptionHandler(BadRequestException.class)
   public ResponseEntity<Error> handleException(BadRequestException ex) {

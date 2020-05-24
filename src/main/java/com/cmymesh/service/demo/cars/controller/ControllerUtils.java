@@ -45,8 +45,7 @@ public class ControllerUtils {
     if (StringUtils.isEmpty(page) || !page.chars().allMatch(Character::isDigit)) {
       return DEFAULT_OFFSET_PAGE;
     }
-    Integer result = Integer.valueOf(page);
-    return result;
+    return Integer.valueOf(page);
   }
 
   public static String getSortOrder(String sortOrder) {

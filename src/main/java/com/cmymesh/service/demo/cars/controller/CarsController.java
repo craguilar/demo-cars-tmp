@@ -23,8 +23,12 @@ import com.cmymesh.service.demo.cars.service.CarsService;
 @RestController
 public class CarsController implements CarsApi {
 
+  private final CarsService carService;
+
   @Autowired
-  CarsService carService;
+  public CarsController(CarsService carService){
+    this.carService = carService;
+  }
 
   @Override
   public ResponseEntity<Car> addCar(@Valid Car body) {
