@@ -4,12 +4,19 @@ import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 
-public class DateUtils {
+import lombok.experimental.UtilityClass;
 
-  private DateUtils() {
+/**
+ * @author caruizag
+ */
+@UtilityClass
+public final class DateUtils {
 
-  }
-
+  /**
+   * 
+   * @param utilDate
+   * @return
+   */
   public static OffsetDateTime dateToOffsetDateTime(Date utilDate) {
     return utilDate == null ? null : utilDate.toInstant().atOffset(ZoneOffset.UTC);
   }

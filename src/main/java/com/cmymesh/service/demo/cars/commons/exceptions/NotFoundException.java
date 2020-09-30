@@ -3,7 +3,7 @@ package com.cmymesh.service.demo.cars.commons.exceptions;
 /**
  * HTTP Code: 404. Not found.
  * 
- * @author caruruiz
+ * @author caruizag
  *
  */
 public class NotFoundException extends RuntimeException {

@@ -14,7 +14,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 @Configuration
 public class TelemetryConfiguration {
 
-  private static final String DEFAUL_HOSTNAME = "viking-host";
+  private static final String DEFAULT_HOSTNAME = "alpha-host";
 
   @Bean
   public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
@@ -26,7 +26,7 @@ public class TelemetryConfiguration {
     try {
       return InetAddress.getLocalHost().getHostName();
     } catch (UnknownHostException e) {
-      return DEFAUL_HOSTNAME;
+      return DEFAULT_HOSTNAME;
     }
   }
 }

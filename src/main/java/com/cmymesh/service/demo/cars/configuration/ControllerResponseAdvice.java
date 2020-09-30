@@ -18,7 +18,6 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 @ControllerAdvice
-
 public class ControllerResponseAdvice implements ResponseBodyAdvice<Object> {
 
   @Override

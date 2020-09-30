@@ -3,7 +3,7 @@ package com.cmymesh.service.demo.cars.commons.exceptions;
 /**
  * HTTP Status code : 500. Internal Server error.
  * 
- * @author caruruiz
+ * @author caruizag
  *
  */
 public class InternalServerErrorException extends RuntimeException {

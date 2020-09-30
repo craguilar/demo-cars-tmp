@@ -3,7 +3,7 @@ package com.cmymesh.service.demo.cars.commons.exceptions;
 /**
  * HTTP Status code : 400 .A bad request was made.
  * 
- * @author caruruiz
+ * @author caruizag
  *
  */
 public class BadRequestException extends RuntimeException {

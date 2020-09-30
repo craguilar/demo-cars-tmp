@@ -25,6 +25,10 @@ public class CarsController implements CarsApi {
 
   private final CarsService carService;
 
+  /**
+   * 
+   * @param carService
+   */
   @Autowired
   public CarsController(CarsService carService){
     this.carService = carService;
@@ -48,7 +52,6 @@ public class CarsController implements CarsApi {
       return new ResponseEntity<>(pojo.get(), HttpStatus.OK);
     }
     throw new NotFoundException();
-
   }
 
   @Override
@@ -74,7 +77,6 @@ public class CarsController implements CarsApi {
       return new ResponseEntity<>(pojo.get(), HttpStatus.CREATED);
     }
     throw new NotFoundException();
-
   }
 
 }

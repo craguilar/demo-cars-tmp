@@ -17,7 +17,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
  * Class that configures JSON Default mapper with the purpose of have more
  * control over auto configuration.
  * 
- * @author caruruiz
+ * @author caruizag
  *
  */
 @Configuration

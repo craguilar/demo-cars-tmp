@@ -1,7 +1,5 @@
 package com.cmymesh.service.demo.cars.commons.exceptions;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,12 +10,9 @@ import com.cmymesh.service.demo.cars.model.pojo.Error;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This class is used as an Exception Handling Mechanism for SAPI (CSA Service
- * API Template project) based on common HTTP Exceptions. For more information
- * please visit this
- * <a href= "https://confluence.oraclecorp.com/confluence/x/nAXTPg"> link</a>
+ * This class is used as an Exception Handling Mechanism.
  * 
- * @author caruruiz
+ * @author caruizag
  *
  */
 @Slf4j

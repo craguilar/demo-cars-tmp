@@ -3,7 +3,7 @@ package com.cmymesh.service.demo.cars.commons.exceptions;
 /**
  * HTTP Code: 401. Unauthorized.
  * 
- * @author caruruiz
+ * @author caruizag
  *
  */
 public class UnauthorizedException extends RuntimeException {

@@ -5,6 +5,6 @@ public class ApplicationConstants {
   public static final String APPLICATION_NAME = "demo-cars";
 
   private ApplicationConstants() {
-
   }
+
 }
