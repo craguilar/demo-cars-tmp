@@ -20,19 +20,14 @@ import com.cmymesh.service.demo.cars.model.pojo.Car;
 import com.cmymesh.service.demo.cars.model.pojo.CarSummary;
 import com.cmymesh.service.demo.cars.service.CarsService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CarsController implements CarsApi {
 
   private final CarsService carService;
 
-  /**
-   * 
-   * @param carService
-   */
-  @Autowired
-  public CarsController(CarsService carService){
-    this.carService = carService;
-  }
 
   @Override
   public ResponseEntity<Car> addCar(@Valid Car body) {

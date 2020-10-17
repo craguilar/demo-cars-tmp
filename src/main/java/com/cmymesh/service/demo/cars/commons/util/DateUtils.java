@@ -6,16 +6,14 @@ import java.util.Date;
 
 import lombok.experimental.UtilityClass;
 
-/**
- * @author caruizag
- */
 @UtilityClass
 public final class DateUtils {
 
   /**
+   * Helper function that helps transform Dates into its OffsetDateTime.
    * 
-   * @param utilDate
-   * @return
+   * @param utilDate to Convert
+   * @return a representation of utilDate as {@link OffsetDateTime}
    */
   public static OffsetDateTime dateToOffsetDateTime(Date utilDate) {
     return utilDate == null ? null : utilDate.toInstant().atOffset(ZoneOffset.UTC);

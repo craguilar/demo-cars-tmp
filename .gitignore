@@ -1,5 +1,10 @@
-/bin/
-/target/
-/.classpath
-/.project
-/.settings/
+# IDEs
+
+**/bin/
+**/target/
+**/.classpath
+**/.project
+**/.settings/
+*.iml
+**/lib/
+**/.idea/
