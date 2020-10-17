@@ -2,6 +2,9 @@ package com.cmymesh.service.demo.cars.controller;
 
 import org.junit.Test;
 
+/**
+ * So empty unit test.
+ */
 public class ControllerUtilsTest {
 
   @Test

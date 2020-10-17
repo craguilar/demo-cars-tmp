@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Main car object .
+ * Main car object , intentionally left with swagger code gen auto generated code .
  */
 @ApiModel(description = "Main car object . ")
 @Validated
@@ -43,7 +43,6 @@ public class CarSummary implements Serializable {
 
   /**
    * Car plate
-   * 
    * @return plate
    **/
   @ApiModelProperty(required = true, value = "Car plate ")
@@ -64,7 +63,6 @@ public class CarSummary implements Serializable {
 
   /**
    * Get make
-   * 
    * @return make
    **/
   @ApiModelProperty(required = true, value = "")
@@ -85,7 +83,6 @@ public class CarSummary implements Serializable {
 
   /**
    * Get model
-   * 
    * @return model
    **/
   @ApiModelProperty(required = true, value = "")
@@ -106,7 +103,6 @@ public class CarSummary implements Serializable {
 
   /**
    * Get description
-   * 
    * @return description
    **/
   @ApiModelProperty(value = "")
@@ -126,7 +122,6 @@ public class CarSummary implements Serializable {
 
   /**
    * Get typeOfUse
-   * 
    * @return typeOfUse
    **/
   @ApiModelProperty(value = "")
@@ -148,9 +143,10 @@ public class CarSummary implements Serializable {
       return false;
     }
     CarSummary carSummary = (CarSummary) o;
-    return Objects.equals(this.plate, carSummary.plate) && Objects.equals(this.make, carSummary.make)
-        && Objects.equals(this.model, carSummary.model) && Objects.equals(this.description, carSummary.description)
-        && Objects.equals(this.typeOfUse, carSummary.typeOfUse);
+    return Objects.equals(this.plate, carSummary.plate) && Objects.equals(this.make,
+        carSummary.make) && Objects.equals(this.model, carSummary.model) && Objects.equals(
+        this.description, carSummary.description) && Objects.equals(this.typeOfUse,
+        carSummary.typeOfUse);
   }
 
   @Override
@@ -173,8 +169,8 @@ public class CarSummary implements Serializable {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first
+   * line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {

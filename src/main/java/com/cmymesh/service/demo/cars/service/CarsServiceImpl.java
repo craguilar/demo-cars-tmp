@@ -24,15 +24,17 @@ import com.cmymesh.service.demo.cars.model.pojo.Car;
 import com.cmymesh.service.demo.cars.model.pojo.CarSummary;
 import com.cmymesh.service.demo.cars.repository.CarsRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CarsServiceImpl implements CarsService {
+
+  private final CarsRepository carsRepository;
 
   // TODO : This could be declared as a bean.
   private ModelMapper entityToPojoModelMapper = null;
   private ModelMapper pojoToEntityModelMapper = null;
-
-  @Autowired
-  CarsRepository carsRepository;
 
   @Override
   public Optional<Car> addCar(Car car) {
