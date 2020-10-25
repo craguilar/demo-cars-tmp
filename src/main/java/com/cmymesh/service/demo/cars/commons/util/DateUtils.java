@@ -11,7 +11,7 @@ public final class DateUtils {
 
   /**
    * Helper function that helps transform Dates into its OffsetDateTime.
-   * 
+   *
    * @param utilDate to Convert
    * @return a representation of utilDate as {@link OffsetDateTime}
    */

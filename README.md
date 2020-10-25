@@ -23,8 +23,7 @@ This sample includes:
   CloudFormation to deploy your infrastructure
 * template-configuration.json - this file contains the project ARN with placeholders used for tagging resources with the project ID
 
-Getting Started
----------------
+# Getting Started
 
 Deploying locally
 
@@ -41,8 +40,7 @@ Deploying locally
 4. Open http://127.0.0.1:8080/ in a web browser to view your service.
 
 
-How Do I generate Api interfaces from swagger specification?
-------------------
+## How Do I generate Api interfaces from swagger specification?
 
 On bash run , 
 
@@ -51,8 +49,8 @@ java -jar ~/bin/swagger-codegen-cli.jar generate -i api-spec/swagger-carsdemo.ya
 ```
 
 
-How Do I Add Template Resources to My Project?
-------------------
+## How Do I Add Template Resources to My Project?
+
 
 To add AWS resources to your project, you'll need to edit the `template.yml`
 file in your project's repository. You may also need to modify permissions for
@@ -62,8 +60,7 @@ and AWS CloudFormation provision the resources for you.
 See the AWS CodeStar user guide for instructions to modify your template:
 https://docs.aws.amazon.com/codestar/latest/userguide/how-to-change-project.html#customize-project-template
 
-What Should I Do Before Running My Project in Production?
-------------------
+## What Should I Do Before Running My Project in Production?
 
 AWS recommends you review the security best practices recommended by the framework
 author of your selected sample application before running it in production. You
