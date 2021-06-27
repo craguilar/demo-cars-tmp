@@ -72,7 +72,8 @@ public class CarsController implements CarsApi {
     if (pojo.isPresent()) {
       return new ResponseEntity<>(pojo.get(), HttpStatus.CREATED);
     }
-    throw new NotFoundException();
+    throw new InternalServerErrorException(
+        "Car coudld't be updated , please contact application owner!");
   }
 
 }
