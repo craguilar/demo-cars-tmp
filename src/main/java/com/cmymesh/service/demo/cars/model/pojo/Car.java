@@ -3,16 +3,20 @@ package com.cmymesh.service.demo.cars.model.pojo;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
+import lombok.Builder;
 import lombok.Data;
 
 /**
  * Main car object .
  */
+@Builder
 @ApiModel(description = "Main car object . ")
 @Validated
 @Data
@@ -23,7 +27,8 @@ public class Car implements Serializable {
   private String plate = null;
 
   @JsonProperty("make")
-  private String make = null;
+  @NotNull
+  private String make;
 
   @JsonProperty("model")
   private String model = null;

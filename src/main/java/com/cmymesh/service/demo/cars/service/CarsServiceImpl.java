@@ -16,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import com.cmymesh.service.demo.cars.commons.controller.PaginationParameters;
 import com.cmymesh.service.demo.cars.commons.util.DateUtils;
@@ -24,30 +23,53 @@ import com.cmymesh.service.demo.cars.model.pojo.Car;
 import com.cmymesh.service.demo.cars.model.pojo.CarSummary;
 import com.cmymesh.service.demo.cars.repository.CarsRepository;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+/**
+ * I was experimenting on Isolation.SERIALIZABLE with H2 and after some tests it seems there is no
+ * decent support for SERIALIZABLE level , the testing was :
+ * <ol>
+ * <li/>At t0 throw a bunch of threads writing a new car addCar.
+ * <li/>Each of these threads will execute a read first then if the car DOES NOT exist , will
+ * persist it to theDB
+ * <li/>If you run this multiple times you will notice for this experiment there are more than one
+ * Car [{}] doesn't exist creating one log printed.
+ * </ol>
+ * 
+ * What this means is: I can trust in data base or framework promises for transaction isolations (or
+ * , I don't know how effectively use them). For now I am just happy with the fact that "addCar"
+ * will be idempotent based on Primary Key constraings (a data base guarantee).
+ * 
+ * @author carlos
+ *
+ */
+@Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CarsServiceImpl implements CarsService {
 
   private final CarsRepository carsRepository;
-
-  // TODO : This could be declared as a bean.
-  private ModelMapper entityToPojoModelMapper = null;
-  private ModelMapper pojoToEntityModelMapper = null;
+  private final ModelMapper entityToPojoModelMapper;
+  private final ModelMapper pojoToEntityModelMapper;
 
   @Override
-  public Optional<Car> addCar(Car car) {
+  @Transactional
+  public Optional<Car> addCar(@NonNull Car car) {
 
-    if (car == null || StringUtils.isEmpty(car.getMake())) {
-      return Optional.empty();
+    Optional<Car> existingCar = getCar(car.getMake());
+    if (existingCar.isPresent()) {
+      return existingCar;
     }
 
+    log.info("Car [{}] doesn't exist creating one", car.getMake());
     com.cmymesh.service.demo.cars.model.entity.Car entity = pojoToEntityModelMapper().map(car,
         com.cmymesh.service.demo.cars.model.entity.Car.class);
+    entity.setId(car.getMake());
     entity.setTimeCreated(new Date());
     entity.setTimeUpdated(new Date());
-    // TODO : What is the difference ?
+
     carsRepository.saveAndFlush(entity);
     return Optional.of(car);
   }
@@ -55,7 +77,8 @@ public class CarsServiceImpl implements CarsService {
   @Override
   @Transactional(readOnly = true)
   public Optional<Car> getCar(String carId) {
-    Optional<com.cmymesh.service.demo.cars.model.entity.Car> entity = carsRepository.findById(carId);
+    Optional<com.cmymesh.service.demo.cars.model.entity.Car> entity = carsRepository
+        .findById(carId);
     if (entity.isPresent()) {
       Car pojo = entityToPojoModelMapper().map(entity.get(), Car.class);
       return Optional.of(pojo);
@@ -79,11 +102,13 @@ public class CarsServiceImpl implements CarsService {
 
   @Override
   public Optional<Car> updateCar(Car car) {
-    Optional<com.cmymesh.service.demo.cars.model.entity.Car> entity = carsRepository.findById(car.getPlate());
+    Optional<com.cmymesh.service.demo.cars.model.entity.Car> entity = carsRepository
+        .findById(car.getPlate());
     if (!entity.isPresent()) {
       return Optional.empty();
     }
-    carsRepository.save(pojoToEntityModelMapper().map(car, com.cmymesh.service.demo.cars.model.entity.Car.class));
+    carsRepository.save(
+        pojoToEntityModelMapper().map(car, com.cmymesh.service.demo.cars.model.entity.Car.class));
     return Optional.of(car);
   }
 
@@ -98,19 +123,14 @@ public class CarsServiceImpl implements CarsService {
   }
 
   public ModelMapper entityToPojoModelMapper() {
-    if (entityToPojoModelMapper != null) {
-      return entityToPojoModelMapper;
-    }
-    entityToPojoModelMapper = new ModelMapper();
+
     TypeMap<com.cmymesh.service.demo.cars.model.entity.Car, Car> typeMap = entityToPojoModelMapper
         .createTypeMap(com.cmymesh.service.demo.cars.model.entity.Car.class, Car.class);
 
-    Converter<Date, OffsetDateTime> toOffsetDateTime = new Converter<Date, OffsetDateTime>() {
-      @Override
-      public OffsetDateTime convert(MappingContext<Date, OffsetDateTime> context) {
-        return DateUtils.dateToOffsetDateTime(context.getSource());
-      }
-    };
+    Converter<Date, OffsetDateTime> toOffsetDateTime = (
+        MappingContext<Date, OffsetDateTime> context) -> DateUtils
+            .dateToOffsetDateTime(context.getSource());
+
     entityToPojoModelMapper.addConverter(toOffsetDateTime);
     typeMap.addMappings(mapper -> {
       mapper.map(com.cmymesh.service.demo.cars.model.entity.Car::getId, Car::setPlate);
@@ -119,19 +139,13 @@ public class CarsServiceImpl implements CarsService {
   }
 
   public ModelMapper pojoToEntityModelMapper() {
-    if (pojoToEntityModelMapper != null) {
-      return pojoToEntityModelMapper;
-    }
-    pojoToEntityModelMapper = new ModelMapper();
+
     TypeMap<Car, com.cmymesh.service.demo.cars.model.entity.Car> typeMap = pojoToEntityModelMapper
         .createTypeMap(Car.class, com.cmymesh.service.demo.cars.model.entity.Car.class);
 
-    Converter<Date, OffsetDateTime> toOffsetDateTime = new Converter<Date, OffsetDateTime>() {
-      @Override
-      public OffsetDateTime convert(MappingContext<Date, OffsetDateTime> context) {
-        return DateUtils.dateToOffsetDateTime(context.getSource());
-      }
-    };
+    Converter<Date, OffsetDateTime> toOffsetDateTime = (
+        MappingContext<Date, OffsetDateTime> context) -> DateUtils
+            .dateToOffsetDateTime(context.getSource());
     pojoToEntityModelMapper.addConverter(toOffsetDateTime);
     typeMap.addMappings(mapper -> {
       mapper.map(Car::getPlate, com.cmymesh.service.demo.cars.model.entity.Car::setId);

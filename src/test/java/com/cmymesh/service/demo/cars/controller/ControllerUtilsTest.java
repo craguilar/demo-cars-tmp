@@ -1,6 +1,6 @@
 package com.cmymesh.service.demo.cars.controller;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * So empty unit test.
@@ -33,7 +33,7 @@ public class ControllerUtilsTest {
   }
 
   @Test
-  private void getPojoToEntitySortByMapping() {
+  public void getPojoToEntitySortByMapping() {
 
   }
 }
