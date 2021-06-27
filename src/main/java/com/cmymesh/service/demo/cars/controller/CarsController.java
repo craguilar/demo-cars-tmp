@@ -28,7 +28,6 @@ public class CarsController implements CarsApi {
 
   private final CarsService carService;
 
-
   @Override
   public ResponseEntity<Car> addCar(@Valid Car body) {
 
@@ -50,17 +49,19 @@ public class CarsController implements CarsApi {
   }
 
   @Override
-  public ResponseEntity<List<CarSummary>> listCars(@Valid List<String> fields, @Min(1) @Max(1000) @Valid Integer limit,
-      @Size(min = 1, max = 512) @Valid String page, @Valid String sortOrder, @Valid String sortBy) {
+  public ResponseEntity<List<CarSummary>> listCars(@Valid List<String> fields,
+      @Min(1) @Max(1000) @Valid Integer limit, @Size(min = 1, max = 512) @Valid String page,
+      @Valid String sortOrder, @Valid String sortBy) {
 
     PaginationParameters pagination = new PaginationParameters(ControllerUtils.getLimit(limit),
-        ControllerUtils.getPage(page), ControllerUtils.getSortOrder(sortOrder), ControllerUtils.getSortBy(sortBy));
+        ControllerUtils.getPage(page), ControllerUtils.getSortOrder(sortOrder),
+        ControllerUtils.getSortBy(sortBy));
 
     List<CarSummary> list = carService.listCars(pagination);
-    if (list != null && !list.isEmpty()) {
+    if (list != null) {
       return new ResponseEntity<>(list, HttpStatus.OK);
     }
-    throw new NotFoundException();
+    throw new InternalServerErrorException("Something happened , our list of cars is null yaiks!");
   }
 
   @Override
