@@ -10,21 +10,26 @@ import org.springframework.validation.annotation.Validated;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Main car object .
  */
 @Builder
-@ApiModel(description = "Main car object . ")
-@Validated
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Validated
+@ApiModel(description = "Main car object . ")
 public class Car implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("plate")
-  private String plate = null;
+  @NotNull
+  private String plate;
 
   @JsonProperty("make")
   @NotNull

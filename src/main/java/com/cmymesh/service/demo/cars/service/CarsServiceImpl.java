@@ -51,14 +51,12 @@ import lombok.extern.slf4j.Slf4j;
 public class CarsServiceImpl implements CarsService {
 
   private final CarsRepository carsRepository;
-  private final ModelMapper entityToPojoModelMapper;
-  private final ModelMapper pojoToEntityModelMapper;
 
   @Override
   @Transactional
   public Optional<Car> addCar(@NonNull Car car) {
 
-    Optional<Car> existingCar = getCar(car.getMake());
+    Optional<Car> existingCar = getCar(car.getPlate());
     if (existingCar.isPresent()) {
       return existingCar;
     }
@@ -66,7 +64,7 @@ public class CarsServiceImpl implements CarsService {
     log.info("Car [{}] doesn't exist creating one", car.getMake());
     com.cmymesh.service.demo.cars.model.entity.Car entity = pojoToEntityModelMapper().map(car,
         com.cmymesh.service.demo.cars.model.entity.Car.class);
-    entity.setId(car.getMake());
+    entity.setId(car.getPlate());
     entity.setTimeCreated(new Date());
     entity.setTimeUpdated(new Date());
 
@@ -80,6 +78,7 @@ public class CarsServiceImpl implements CarsService {
     Optional<com.cmymesh.service.demo.cars.model.entity.Car> entity = carsRepository
         .findById(carId);
     if (entity.isPresent()) {
+
       Car pojo = entityToPojoModelMapper().map(entity.get(), Car.class);
       return Optional.of(pojo);
     }
@@ -123,7 +122,7 @@ public class CarsServiceImpl implements CarsService {
   }
 
   public ModelMapper entityToPojoModelMapper() {
-
+    ModelMapper entityToPojoModelMapper = new ModelMapper();
     TypeMap<com.cmymesh.service.demo.cars.model.entity.Car, Car> typeMap = entityToPojoModelMapper
         .createTypeMap(com.cmymesh.service.demo.cars.model.entity.Car.class, Car.class);
 
@@ -139,7 +138,7 @@ public class CarsServiceImpl implements CarsService {
   }
 
   public ModelMapper pojoToEntityModelMapper() {
-
+    ModelMapper pojoToEntityModelMapper = new ModelMapper();
     TypeMap<Car, com.cmymesh.service.demo.cars.model.entity.Car> typeMap = pojoToEntityModelMapper
         .createTypeMap(Car.class, com.cmymesh.service.demo.cars.model.entity.Car.class);
 

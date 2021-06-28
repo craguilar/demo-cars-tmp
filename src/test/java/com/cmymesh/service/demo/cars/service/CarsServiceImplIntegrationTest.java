@@ -13,7 +13,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
@@ -32,11 +31,10 @@ class CarsServiceImplIntegrationTest {
   @Test
   void addCarTest() throws InterruptedException {
 
-    CarsService carService = new CarsServiceImpl(carsRepository, new ModelMapper(),
-        new ModelMapper());
+    CarsService carService = new CarsServiceImpl(carsRepository);
 
     Callable<Optional<Car>> thread = () -> {
-      return carService.addCar(Car.builder().company("Test").make("CAGDL-001").build());
+      return carService.addCar(Car.builder().company("Test").plate("CAGDL-001").build());
     };
     List<Future<Optional<Car>>> results = new ArrayList<>();
     ExecutorService executor = Executors.newFixedThreadPool(5);
