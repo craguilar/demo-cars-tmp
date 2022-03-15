@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Main car object , intentionally left with swagger code gen auto generated code .
+ * Main car object .
  */
 @ApiModel(description = "Main car object . ")
 @Validated
@@ -179,3 +179,4 @@ public class CarSummary implements Serializable {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

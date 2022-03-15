@@ -1,11 +1,9 @@
-Demo Cars service
-==================================================
+# Demo Cars service
 
 This project was originated from sample code coming from AWS CodeDeploy.
 This project is deployed by AWS CodeDeploy and AWS CloudFormation to an Amazon EC2 server.
 
-What's Here
------------
+## What's Here?
 
 This sample includes:
 
@@ -23,7 +21,7 @@ This sample includes:
   CloudFormation to deploy your infrastructure
 * template-configuration.json - this file contains the project ARN with placeholders used for tagging resources with the project ID
 
-# Getting Started
+## Getting Started
 
 Deploying locally
 
@@ -31,14 +29,17 @@ Deploying locally
 
 2. Build the service.
 
-        $ mvn clean package
+  ```bash
+  mvn clean package
+  ```
 
-3. Then execute 
+3. Then execute
 
-        $ sh run.sh
+  ```bash
+  sh run.sh
+  ```
 
 4. Open http://127.0.0.1:8080/ in a web browser to view your service.
-
 
 ## How Do I generate Api interfaces from swagger specification?
 
@@ -69,3 +70,7 @@ advisories for dependencies used within your application.
 
 Best Practices: https://docs.aws.amazon.com/codestar/latest/userguide/best-practices.html?icmpid=docs_acs_rm_sec
 
+
+## References
+
+1. https://12factor.net/

@@ -2,7 +2,9 @@ package com.cmymesh.service.demo.cars.model.pojo;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
@@ -18,12 +20,12 @@ import lombok.NoArgsConstructor;
 /**
  * Main car object .
  */
+@ApiModel(description = "Main car object . ")
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Validated
-@ApiModel(description = "Main car object . ")
 public class Car implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -61,5 +63,9 @@ public class Car implements Serializable {
 
   @JsonProperty("timeUpdated")
   private OffsetDateTime timeUpdated = null;
+
+  @JsonProperty("images")
+  @Valid
+  private List<Image> images = null;
 
 }

@@ -68,8 +68,6 @@ paths:
           $ref: '#/responses/400'
         401:
           $ref: '#/responses/401'
-        404:
-          $ref: '#/responses/404'
         500:
           $ref: '#/responses/500'
     post:
@@ -188,6 +186,23 @@ definitions:
       timeUpdated:
         type: string
         format:  date-time
+      images:
+        type: array
+        items:
+          $ref: "#/definitions/Image"
+
+  Image:
+    type: object
+    description : Object that holds an image definition
+    required:
+      - name
+      - content
+    properties:
+      name:
+        type: string
+      content:
+        type: file
+
 
   Error:
     type: object

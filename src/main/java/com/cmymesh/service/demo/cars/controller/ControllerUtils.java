@@ -49,8 +49,8 @@ public class ControllerUtils {
   }
 
   public static String getSortOrder(String sortOrder) {
-    if (StringUtils.isEmpty(sortOrder)
-        || (!sortOrder.equalsIgnoreCase(SORT_DIRECTION_ASC) && !sortOrder.equalsIgnoreCase(SORT_DIRECTION_DESC))) {
+    if (StringUtils.isEmpty(sortOrder) || (!sortOrder.equalsIgnoreCase(SORT_DIRECTION_ASC)
+        && !sortOrder.equalsIgnoreCase(SORT_DIRECTION_DESC))) {
       return SORT_DIRECTION_DESC;
     }
     return sortOrder.toUpperCase();
@@ -58,14 +58,15 @@ public class ControllerUtils {
 
   /**
    * Valid
-   * 
    * @param sortBy
-   *          plate, make, timeCreated
+   *     plate, make, timeCreated
+   *
    * @return
    */
   public static String getSortBy(String sortBy) {
     if (StringUtils.isEmpty(sortBy) || (!sortBy.equalsIgnoreCase(SORT_BY_PLATE)
-        && !sortBy.equalsIgnoreCase(SORT_BY_MAKE) && !sortBy.equalsIgnoreCase(SORT_BY_TIMECREATED))) {
+        && !sortBy.equalsIgnoreCase(SORT_BY_MAKE) && !sortBy.equalsIgnoreCase(
+        SORT_BY_TIMECREATED))) {
       return DEFAULT_SORT_BY;
     }
     return getPojoToEntitySortByMapping(sortBy.toUpperCase());
