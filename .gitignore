@@ -1,8 +1,5 @@
-# Tooling
-**/.aws-sam/
-**/.gradle/
+# IDEs
 
-# IDEs and build
 **/bin/
 **/target/
 **/.classpath
