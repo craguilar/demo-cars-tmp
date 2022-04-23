@@ -3,7 +3,14 @@ Conditions:
   UseSubnet: !Not [!Equals [!Ref 'SubnetId', subnet-none]]
   IsBurstableInstanceType: !Equals [!Select [0, !Split ['.', !Ref InstanceType]], t3]
 Transform:
+- AWS::Serverless-2016-10-31
 - AWS::CodeStar
+
+Globals:
+  Api:
+    # API Gateway regional endpoints
+    EndpointConfiguration: REGIONAL
+
 Parameters:
   ProjectId:
     Type: String
@@ -36,7 +43,9 @@ Parameters:
     - ipv4
     - dualstack
     Default: ipv4
+
 Resources:
+
   WebApp01:
     Description: The installation and configuration commands this project will use to create instances that support this sample web application.
     Properties:
@@ -134,3 +143,17 @@ Resources:
       TargetGroupAttributes:
       - Key: deregistration_delay.timeout_seconds
         Value: '300'
+  DemoCarsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.cmymesh.service.demo.cars.controller.CarsLambdaRequestHandler::handleRequest
+      Runtime: java11
+      MemorySize: 2048
+      Policies: AWSLambdaBasicExecutionRole
+      Timeout: 60
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties:
+            TimeoutInMillis: 25000
+            PayloadFormatVersion: '1.0'

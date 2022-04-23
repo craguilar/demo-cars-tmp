@@ -12,7 +12,17 @@ phases:
       - mvn clean compile test verify
   build:
     commands:
+      # EC2
       - mvn package -Prelease
+      - cp  target/ROOT.war .
+      # Lambda (skip tests)
+      - mvn clean package shade:shade -Plambda -DskipTests
+      - mkdir lambda 
+      - cp target/ROOT-SHADED.jar template.yml lambda/
+      - cd lambda/ &&  unzip -oqq ROOT-SHADED.jar
+      - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template ../template-export.yml
+      # Back to root :/
+      - cd ..
   post_build:
     commands:
       # Do not remove this statement. This command is required for AWS CodeStar projects.
@@ -23,5 +33,6 @@ artifacts:
     - appspec.yml
     - template.yml
     - scripts/*
-    - target/ROOT.war
+    - ROOT.war
+    - template-export.yml
     - template-configuration.json
