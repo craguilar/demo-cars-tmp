@@ -45,7 +45,7 @@ public class CarsController implements CarsApi {
     if (pojo.isPresent()) {
       return new ResponseEntity<>(pojo.get(), HttpStatus.OK);
     }
-    throw new NotFoundException("Does not exist or not authorized");
+    throw new NotFoundException();
   }
 
   @Override
@@ -73,7 +73,7 @@ public class CarsController implements CarsApi {
       return new ResponseEntity<>(pojo.get(), HttpStatus.CREATED);
     }
     throw new InternalServerErrorException(
-        "Car couldn't be updated , please contact application owner!");
+        "Car coudld't be updated , please contact application owner!");
   }
 
 }
