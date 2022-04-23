@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cmymesh.service.demo.cars</groupId>
     <artifactId>demo-cars</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <packaging>${project.packaging}</packaging>
 
     <name>demo-cars</name>
