@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * testing this saves only a few ms.
  */
 @SpringBootApplication
-@EnableJpaRepositories("com.cmymesh.service.demo.cars.repository")
+@EnableJpaRepositories
 @EntityScan("com.cmymesh.service.demo.cars.model.entity")
 public class Application extends SpringBootServletInitializer {
 
