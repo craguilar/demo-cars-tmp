@@ -98,43 +98,4 @@ Resources:
           FromPort: "22"
           ToPort: "22"
           CidrIp: 0.0.0.0/0
-  LoadBalancerWebApp:
-    Description: Default Internal NLB to be consumed by API Gateway.
-    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
-    Properties:
-      Type: network
-      IpAddressType:
-        Ref: ELBIpAddressType
-      Scheme: internal
-      Subnets:
-        - !Ref "SubnetId"
-  LoadBalancerWebAppListener:
-    Type: AWS::ElasticLoadBalancingV2::Listener
-    Properties:
-      DefaultActions:
-        - Type: forward
-          TargetGroupArn: !Ref "LoadBalancerWebAppTargetGroup"
-      LoadBalancerArn: !Ref LoadBalancerWebApp
-      Port: "80"
-      Protocol: TCP
-  LoadBalancerWebAppTargetGroup:
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
-    Properties:
-      Name: ec2-WebApp-nlb-tg
-      Port: 80
-      Protocol: TCP
-      TargetType: instance
-      VpcId: !Ref "VpcId"
-      HealthCheckEnabled: true
-      HealthCheckIntervalSeconds: "30"
-      HealthCheckPort: traffic-port
-      HealthCheckProtocol: TCP
-      HealthCheckTimeoutSeconds: "10"
-      HealthyThresholdCount: "3"
-      UnhealthyThresholdCount: "3"
-      Targets:
-        - Id: !Ref "WebApp01"
-          Port: 80
-      TargetGroupAttributes:
-        - Key: deregistration_delay.timeout_seconds
-          Value: "300"
+

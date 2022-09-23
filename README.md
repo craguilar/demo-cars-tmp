@@ -41,17 +41,23 @@ Deploying locally
 
 4. Open http://127.0.0.1:8080/ in a web browser to view your service.
 
+## Deployment
+
+Validate your Cloudformation template using below command: 
+
+```bash
+aws cloudformation validate-template --template-body file://./template.yml
+```
+
 ## How Do I generate Api interfaces from swagger specification?
 
-On bash run , 
+On bash run ,
 
 ```bash
 java -jar ~/bin/swagger-codegen-cli.jar generate -i api-spec/swagger-carsdemo.yaml -l spring -c  config/swagger-codegen.json
 ```
 
-
 ## How Do I Add Template Resources to My Project?
-
 
 To add AWS resources to your project, you'll need to edit the `template.yml`
 file in your project's repository. You may also need to modify permissions for
@@ -69,7 +75,6 @@ should also regularly review and apply any available patches or associated secur
 advisories for dependencies used within your application.
 
 Best Practices: https://docs.aws.amazon.com/codestar/latest/userguide/best-practices.html?icmpid=docs_acs_rm_sec
-
 
 ## References
 
