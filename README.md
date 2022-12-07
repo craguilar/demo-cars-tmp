@@ -39,7 +39,7 @@ Running locally
   sh run.sh
   ```
 
-4. Open http://127.0.0.1:8080/ in a web browser to view your service.
+4. Open http://127.0.0.1:8080/manage/actuator/info in a web browser.
 
 ## Deployment
 
