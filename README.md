@@ -74,14 +74,14 @@ and AWS CloudFormation provision the resources for you.
 See the AWS CodeStar user guide for instructions to modify your template:
 https://docs.aws.amazon.com/codestar/latest/userguide/how-to-change-project.html#customize-project-template
 
-## What Should I Do Before Running My Project in Production?
+## Major Upgrades
 
-AWS recommends you review the security best practices recommended by the framework
-author of your selected sample application before running it in production. You
-should also regularly review and apply any available patches or associated security
-advisories for dependencies used within your application.
+### Spring Boot 3.0
 
-Best Practices: https://docs.aws.amazon.com/codestar/latest/userguide/best-practices.html?icmpid=docs_acs_rm_sec
+Followed https://spring.io/blog/2022/05/24/preparing-for-spring-boot-3-0 to upgrade to latest SpringBoot 2.7 then , followed
+this guide to upgrade to 3.0 https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide.
+
+Major changes are related to Jakarta EE changes .
 
 ## References
 

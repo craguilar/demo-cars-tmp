@@ -3,8 +3,8 @@ package com.cmymesh.service.demo.cars.model.pojo;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.core.io.Resource;
 import org.springframework.validation.annotation.Validated;

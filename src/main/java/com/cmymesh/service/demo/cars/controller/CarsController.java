@@ -3,10 +3,10 @@ package com.cmymesh.service.demo.cars.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +31,7 @@ public class CarsController implements CarsApi {
   @Override
   public ResponseEntity<Car> addCar(@Valid Car body) {
 
-    Optional<Car> pojo = carService.addCar(body);
+    var pojo = carService.addCar(body);
     if (pojo.isPresent()) {
       return new ResponseEntity<>(pojo.get(), HttpStatus.CREATED);
     }

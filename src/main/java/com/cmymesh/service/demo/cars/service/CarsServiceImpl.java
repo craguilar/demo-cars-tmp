@@ -131,9 +131,7 @@ public class CarsServiceImpl implements CarsService {
             .dateToOffsetDateTime(context.getSource());
 
     entityToPojoModelMapper.addConverter(toOffsetDateTime);
-    typeMap.addMappings(mapper -> {
-      mapper.map(com.cmymesh.service.demo.cars.model.entity.Car::getId, Car::setPlate);
-    });
+    typeMap.addMappings(mapper -> mapper.map(com.cmymesh.service.demo.cars.model.entity.Car::getId, Car::setPlate));
     return entityToPojoModelMapper;
   }
 
@@ -146,9 +144,7 @@ public class CarsServiceImpl implements CarsService {
         MappingContext<Date, OffsetDateTime> context) -> DateUtils
             .dateToOffsetDateTime(context.getSource());
     pojoToEntityModelMapper.addConverter(toOffsetDateTime);
-    typeMap.addMappings(mapper -> {
-      mapper.map(Car::getPlate, com.cmymesh.service.demo.cars.model.entity.Car::setId);
-    });
+    typeMap.addMappings(mapper -> mapper.map(Car::getPlate, com.cmymesh.service.demo.cars.model.entity.Car::setId));
     return pojoToEntityModelMapper;
   }
 

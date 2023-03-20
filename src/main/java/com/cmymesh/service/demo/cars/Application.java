@@ -16,7 +16,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories
 @EntityScan("com.cmymesh.service.demo.cars.model.entity")
 public class Application extends SpringBootServletInitializer {
-
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
